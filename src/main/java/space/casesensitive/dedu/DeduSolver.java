@@ -8,7 +8,6 @@ public class DeduSolver implements Solver
 	@Override
 	public Board solve(Board board)
 	{
-		return board;
+		return new Blocks(board).solve().get();
 	}
-
 }

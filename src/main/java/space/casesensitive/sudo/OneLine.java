@@ -16,11 +16,11 @@ public class OneLine implements Board
 	{
 		this.board = board;
 		this.rank = Rank.forBoardCellsCount(board.length());
-		if (!this.rank.equals(symbols.rank))
+		if (!this.rank.equals(symbols.rank()))
 		{
-			throw InvalidSudoku.differentRanks(this.rank, symbols.rank);
+			throw InvalidSudoku.differentRanks(this.rank, symbols.rank());
 		}
-		Optional<Symbol> undefinedSymbol = board().filter(symbol -> !symbols.accept(symbol)).findAny();
+		Optional<Symbol> undefinedSymbol = stream().filter(symbol -> !symbols.accept(symbol)).findAny();
 		if (undefinedSymbol.isPresent())
 		{
 			throw undefinedSymbol.map(InvalidSudoku::undefinedSymbol).get();
@@ -35,11 +35,11 @@ public class OneLine implements Board
 	{
 		this.symbols = other.symbols();
 		this.rank = other.rank();
-		this.board = other.board().map(CharSymbol.class::cast).map(CharSymbol::toString).collect(joining());
+		this.board = other.stream().map(CharSymbol.class::cast).map(CharSymbol::toString).collect(joining());
 	}
 
 	@Override
-	public Stream<Symbol> board()
+	public Stream<Symbol> stream()
 	{
 		return this.board.chars().mapToObj(i -> new CharSymbol((char) i));
 	}

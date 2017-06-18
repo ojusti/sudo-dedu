@@ -9,6 +9,6 @@ public interface Board
 
 	Symbols symbols();
 
-	Stream<Symbol> board();
+	Stream<Symbol> stream();
 
 }

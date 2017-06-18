@@ -4,13 +4,14 @@ import static java.util.stream.Collectors.toSet;
 
 import java.util.Arrays;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Symbols
 {
 
 	private final Set<Symbol> symbols;
 	private final Symbol empty;
-	final Rank rank;
+	private final Rank rank;
 
 	public Symbols(Symbol empty, Symbol... symbols) throws InvalidSudoku
 	{
@@ -21,7 +22,22 @@ public class Symbols
 
 	boolean accept(Symbol candidate)
 	{
-		return empty.equals(candidate) || symbols.contains(candidate);
+		return isEmpty(candidate) || symbols.contains(candidate);
+	}
+
+	public Stream<Symbol> stream()
+	{
+		return symbols.stream();
+	}
+
+	public boolean isEmpty(Symbol candidate)
+	{
+		return empty.equals(candidate);
+	}
+
+	Rank rank()
+	{
+		return rank;
 	}
 
 }

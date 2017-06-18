@@ -42,7 +42,7 @@ public class Rank
 		return String.valueOf(rank);
 	}
 
-	int symbolsCount()
+	public int symbolsCount()
 	{
 		return rank * rank;
 	}
@@ -91,6 +91,11 @@ public class Rank
 		}
 		Rank other = (Rank) obj;
 		return rank == other.rank;
+	}
+
+	public int get()
+	{
+		return rank;
 	}
 
 }

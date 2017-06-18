@@ -29,22 +29,27 @@ class CharSymbol implements Symbol
 	}
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(Object other)
 	{
-		if (this == obj)
+		if (this == other)
 		{
 			return true;
 		}
-		if (obj == null)
+		if (other == null)
 		{
 			return false;
 		}
-		if (getClass() != obj.getClass())
+		if (getClass() != other.getClass())
 		{
 			return false;
 		}
-		CharSymbol other = (CharSymbol) obj;
-		return symbol == other.symbol;
+		return symbol == ((CharSymbol) other).symbol;
+	}
+
+	@Override
+	public int compareTo(Symbol other)
+	{
+		return symbol - ((CharSymbol) other).symbol;
 	}
 
 }
